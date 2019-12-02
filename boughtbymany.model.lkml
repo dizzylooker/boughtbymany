@@ -1,4 +1,4 @@
-connection: "connection_name"
+connection: "bigquery"
 
 include: "*.view.lkml"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
@@ -17,3 +17,23 @@ include: "*.view.lkml"                       # include all views in this project
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+explore: quotes {
+  join: policies {
+    relationship: many_to_one
+    sql_on: ${quotes.uuid_quote} = ${policies.uuid_quote} ;;
+  }
+  join: feefo_reviews {
+    relationship: one_to_many
+    sql_on: ${policies.uuid_policy} = ${feefo_reviews.uuid_policy} ;;
+  }
+}
+
+# with people as (
+# select 'zev' as name,
+#  ['ben', 'jake', 'waldo', 'fred'] as friends
+# )
+#
+# SELECT name, friend
+# from people
+# LEFT JOIN unnest(friends) as friend
