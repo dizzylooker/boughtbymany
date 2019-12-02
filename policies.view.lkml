@@ -169,6 +169,11 @@ view: policies {
     drill_fields: []
   }
 
+  measure: total_pets {
+    type: sum
+    sql: ${pet_count} ;;
+  }
+
   measure: conversion_rate {
     type: number
     value_format_name: percent_2
