@@ -17,3 +17,10 @@ include: "*.view.lkml"                       # include all views in this project
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+explore: policies {
+  join: policies_pets {
+    relationship: one_to_many
+    sql_on: ${policies.uuid_policy} = ${policies_pets.uuid_policy} ;;
+  }
+}
