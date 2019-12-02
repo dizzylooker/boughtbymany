@@ -53,3 +53,11 @@ explore: service_policy_policies {
     sql: LEFT JOIN UNNEST([service_policy_policies.data]) as service_policy_policies__data ;;
   }
 }
+
+explore: policies {
+  join: policies_pets {
+    from: policies
+    relationship: one_to_many
+    sql_on: ${policies.uuid_policy} = ${policies_pets.uuid_policy} ;;
+  }
+}
